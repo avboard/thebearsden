@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Bears Den — Trinkets, Tees & Cozy Cabin Goods</title>
+<meta name="description" content="The Bears Den is a small shop full of assorted trinkets, T-shirts, sweatshirts, and cozy cabin goods. Handpicked, warmly made.">
+
+<style>
+  :root{
+    --brown-900:#2E1E15;
+    --brown-700:#4A3225;
+    --brown-500:#6B4A32;
+    --tan:#C9A87C;
+    --cream:#F7F1E7;
+    --cream-2:#EFE5D6;
+    --honey:#C98A3B;
+    --forest:#4A5D45;
+    --text:#2E1E15;
+    --muted:#7A6555;
+    --radius:14px;
+    --shadow:0 6px 24px rgba(46,30,21,.10);
+    --max:1140px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:Georgia,"Times New Roman",serif;
+    line-height:1.2;
+    margin:0 0 .5em;
+    letter-spacing:-.01em;
+  }
+  h1{font-size:clamp(2rem,5vw,3.4rem);}
+  h2{font-size:clamp(1.5rem,3.5vw,2.2rem);}
+  h3{font-size:1.15rem;}
+  p{margin:0 0 1em;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .container{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px;}
+  .section{padding:clamp(48px,8vw,88px) 0;}
+  .section-head{max-width:620px;margin:0 auto 40px;text-align:center;}
+  .section-head p{color:var(--muted);margin:0;}
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:.75rem;
+    font-weight:700;
+    color:var(--honey);
+    margin:0 0 10px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-block;
+    padding:13px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.95rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, background .2s ease, color .2s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--brown-700);color:var(--cream);}
+  .btn-primary:hover{background:var(--brown-900);}
+  .btn-ghost{border-color:var(--brown-700);color:var(--brown-700);background:transparent;}
+  .btn-ghost:hover{background:var(--brown-700);color:var(--cream);}
+  .btn-honey{background:var(--honey);color:#fff;}
+  .btn-honey:hover{background:#b0762f;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,241,231,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(107,74,50,.15);
+  }
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;height:70px;}
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:Georgia,serif;font-size:1.25rem;font-weight:700;
+    text-decoration:none;color:var(--brown-900);
+  }
+  .logo .paw{font-size:1.4rem;}
+  .nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    text-decoration:none;font-size:.95rem;font-weight:500;color:var(--brown-700);
+    padding-bottom:2px;border-bottom:2px solid transparent;
+  }
+  .nav-links a:hover{border-bottom-color:var(--honey);}
+  .nav-toggle{
+    display:none;background:none;border:0;font-size:1.6rem;line-height:1;
+    color:var(--brown-900);cursor:pointer;padding:6px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,138,59,.16), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(74,93,69,.14), transparent 45%),
+      var(--cream-2);
+    overflow:hidden;
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
+    padding:clamp(56px,9vw,104px) 0;
+  }
+  .hero h1{margin-bottom:18px;}
+  .hero h1 .accent{color:var(--honey);}
+  .hero-lede{font-size:1.1rem;color:var(--muted);max-width:46ch;margin-bottom:28px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
+  .hero-art{
+    aspect-ratio:1/1;
+    border-radius:24px;
+    background:linear-gradient(150deg,var(--brown-500),var(--brown-900));
+    display:grid;place-items:center;
+    font-size:clamp(5rem,14vw,9rem);
+    box-shadow:var(--shadow);
+    position:relative;
+  }
+  .hero-art::after{
+    content:"Handpicked · Small batch · Made with care";
+    position:absolute;bottom:22px;left:0;right:0;
+    text-align:center;color:rgba(247,241,231,.7);
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  }
+
+  /* ---------- Category strip ---------- */
+  .cats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  }
+  .cat{
+    background:#fff;border:1px solid rgba(107,74,50,.14);
+    border-radius:var(--radius);padding:26px 18px;text-align:center;
+    text-decoration:none;color:var(--brown-900);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .cat:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .cat .icon{font-size:1.9rem;display:block;margin-bottom:8px;}
+  .cat strong{display:block;font-size:.98rem;}
+  .cat span{font-size:.82rem;color:var(--muted);}
+
+  /* ---------- Products ---------- */
+  .products{background:var(--cream);}
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:26px;
+  }
+  .card{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    border:1px solid rgba(107,74,50,.12);
+    display:flex;flex-direction:column;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+  .card-img{
+    aspect-ratio:4/3;display:grid;place-items:center;font-size:3.4rem;
+    background:var(--cream-2);
+  }
+  /* Give each placeholder a slightly different tint */
+  .card:nth-child(4n+1) .card-img{background:#EFE3D2;}
+  .card:nth-child(4n+2) .card-img{background:#E4E9E0;}
+  .card:nth-child(4n+3) .card-img{background:#F2E7DA;}
+  .card:nth-child(4n+4) .card-img{background:#E8E1D6;}
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+  .card-tag{
+    font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--honey);font-weight:700;margin-bottom:6px;
+  }
+  .card h3{margin:0 0 6px;font-size:1.05rem;}
+  .card p{font-size:.88rem;color:var(--muted);margin:0 0 16px;flex:1;}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .price{font-weight:700;font-size:1.05rem;color:var(--brown-900);}
+  .card .btn{padding:9px 18px;font-size:.85rem;}
+
+  /* ---------- About ---------- */
+  .about{background:var(--brown-900);color:var(--cream);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .about h2{color:var(--cream);}
+  .about p{color:rgba(247,241,231,.8);}
+  .about .eyebrow{color:var(--tan);}
+  .about-list{list-style:none;padding:0;margin:24px 0 0;}
+  .about-list li{
+    padding-left:30px;position:relative;margin-bottom:12px;
+    color:rgba(247,241,231,.9);font-size:.95rem;
+  }
+  .about-list li::before{
+    content:"🐾";position:absolute;left:0;top:0;font-size:.9rem;
+  }
+  .about-art{
+    aspect-ratio:4/5;border-radius:20px;
+    background:linear-gradient(160deg,var(--brown-500),var(--brown-700));
+    display:grid;place-items:center;font-size:6rem;
+  }
+
+  /* ---------- Contact / CTA ---------- */
+  .contact{background:var(--cream-2);}
+  .contact-inner{
+    max-width:640px;margin:0 auto;text-align:center;
+  }
+  .contact-links{
+    display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px;
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer{
+    background:var(--brown-900);color:rgba(247,241,231,.65);
+    padding:34px 0;font-size:.85rem;
+  }
+  .footer-inner{
+    display:flex;flex-wrap:wrap;gap:14px;
+    align-items:center;justify-content:space-between;
+  }
+  .footer-inner a{text-decoration:none;color:rgba(247,241,231,.8);}
+  .footer-inner a:hover{color:var(--tan);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:36px;}
+    .hero-art{max-width:340px;margin:0 auto;}
+    .about-grid{grid-template-columns:1fr;gap:34px;}
+    .about-art{max-width:300px;margin:0 auto;}
+    .cats{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:720px){
+    .nav-toggle{display:block;}
+    .nav-links{
+      position:absolute;top:70px;left:0;right:0;
+      flex-direction:column;align-items:flex-start;gap:0;
+      background:var(--cream);
+      border-bottom:1px solid rgba(107,74,50,.15);
+      padding:0 20px;
+      max-height:0;overflow:hidden;
+      transition:max-height .25s ease, padding .25s ease;
+    }
+    .nav-links.open{max-height:340px;padding:12px 20px 22px;}
+    .nav-links li{width:100%;}
+    .nav-links a{display:block;padding:12px 0;width:100%;}
+    .hero-actions .btn{flex:1 1 auto;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="#top" class="logo"><span class="paw">🐻</span> The Bears Den</a>
+
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#shop" class="btn btn-primary" style="padding:9px 20px;">Shop Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container hero-inner">
+    <div>
+      <p class="eyebrow">Small shop · Big personality</p>
+      <h1>Cozy goods for <span class="accent">curious bears</span> and their dens.</h1>
+      <p class="hero-lede">
+        Assorted trinkets, soft tees, heavyweight sweatshirts, and cabin-ready
+        odds and ends — handpicked and made in small batches.
+      </p>
+      <div class="hero-actions">
+        <a href="#shop" class="btn btn-primary">Browse the shop</a>
+        <a href="#about" class="btn btn-ghost">Our story</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">🐻</div>
+  </div>
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section" style="padding-top:56px;">
+  <div class="container">
+    <div class="cats">
+      <a class="cat" href="#shop"><span class="icon">👕</span><strong>Apparel</strong><span>Tees &amp; sweatshirts</span></a>
+      <a class="cat" href="#shop"><span class="icon">🔮</span><strong>Trinkets</strong><span>Pins, charms &amp; more</span></a>
+      <a class="cat" href="#shop"><span class="icon">🕯️</span><strong>Home &amp; Cabin</strong><span>Candles &amp; cozy things</span></a>
+      <a class="cat" href="#shop"><span class="icon">🎁</span><strong>Gifts</strong><span>Ready to give</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="section products" id="shop">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The Shop</p>
+      <h2>Fresh from the Den</h2>
+      <p>A rotating cast of favorites. New trinkets land regularly — check back often.</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">👕</div>
+        <div class="card-body">
+          <p class="card-tag">Apparel</p>
+          <h3>"Bear Hug" Tee</h3>
+          <p>Soft 100% cotton unisex tee with our original bear hug print.</p>
+          <div class="card-foot">
+            <span class="price">$26</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">🧸</div>
+        <div class="card-body">
+          <p class="card-tag">Apparel</p>
+          <h3>Cozy Den Hoodie</h3>
+          <p>Heavyweight fleece hoodie. The official uniform of staying in.</p>
+          <div class="card-foot">
+            <span class="price">$48</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">🕯️</div>
+        <div class="card-body">
+          <p class="card-tag">Home &amp; Cabin</p>
+          <h3>Honey &amp; Cedar Candle</h3>
+          <p>Hand-poured soy candle. Warm, woodsy, and a little sweet.</p>
+          <div class="card-foot">
+            <span class="price">$18</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">📌</div>
+        <div class="card-body">
+          <p class="card-tag">Trinkets</p>
+          <h3>Woodland Enamel Pin Set</h3>
+          <p>Set of three hard-enamel pins: bear, pine, and moon.</p>
+          <div class="card-foot">
+            <span class="price">$12</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">🥤</div>
+        <div class="card-body">
+          <p class="card-tag">Home &amp; Cabin</p>
+          <h3>Cedar Coaster Set</h3>
+          <p>Four laser-etched cedar coasters. Set of 4, made locally.</p>
+          <div class="card-foot">
+            <span class="price">$24</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">🧣</div>
+        <div class="card-body">
+          <p class="card-tag">Apparel</p>
+          <h3>Cabin Crew Sweatshirt</h3>
+          <p>Relaxed-fit crewneck with a vintage-wash finish.</p>
+          <div class="card-foot">
+            <span class="price">$42</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">🐻</div>
+        <div class="card-body">
+          <p class="card-tag">Trinkets</p>
+          <h3>Mini Ceramic Bear</h3>
+          <p>Hand-glazed tiny bear figurine. Desk buddy approved.</p>
+          <div class="card-foot">
+            <span class="price">$16</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-img" aria-hidden="true">🧼</div>
+        <div class="card-body">
+          <p class="card-tag">Gifts</p>
+          <h3>Pine &amp; Patchouli Soap</h3>
+          <p>Cold-process bar soap, wrapped and ready to gift.</p>
+          <div class="card-foot">
+            <span class="price">$9</span>
+            <a href="#contact" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div>
+      <p class="eyebrow">Our Story</p>
+      <h2>Built in a real den (well, a garage).</h2>
+      <p>
+        The Bears Den started as a hobby table at a local market — a few
+        T-shirts, a handful of trinkets, and a lot of encouragement from
+        friends. It grew into something we're proud of.
+      </p>
+      <p>
+        Everything we carry is chosen or made with the same idea: useful,
+        well-made, and a little bit fun.
+      </p>
+      <ul class="about-list">
+        <li>Small-batch and locally sourced where we can</li>
+        <li>Orders packed by hand, usually within 1–2 days</li>
+        <li>Free local pickup available</li>
+      </ul>
+    </div>
+    <div class="about-art" aria-hidden="true">🌲</div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container contact-inner">
+    <p class="eyebrow">Get in Touch</p>
+    <h2>Questions, custom orders, or just saying hi?</h2>
+    <p style="color:var(--muted);">
+      We're a small operation, so you'll always get a real person.
+      Reach out about sizing, bulk orders, or a custom design.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:hello@thebearsden.com" class="btn btn-primary">hello@thebearsden.com</a>
+      <a href="#" class="btn btn-ghost">Instagram</a>
+      <a href="#" class="btn btn-ghost">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> The Bears Den. All rights reserved.</span>
+    <span>
+      <a href="#shop">Shop</a> ·
+      <a href="#about">About</a> ·
+      <a href="#contact">Contact</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const links  = document.getElementById('navLinks');
+
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    toggle.textContent = open ? '✕' : '☰';
+  });
+
+  // Close mobile menu after clicking a link
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '☰';
+    });
+  });
+
+  // Auto-update footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
