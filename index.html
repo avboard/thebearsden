@@ -108,14 +108,16 @@
   .hero{
     position:relative;
     background:
-      radial-gradient(circle at 15% 20%, rgba(201,138,59,.16), transparent 45%),
-      radial-gradient(circle at 85% 80%, rgba(74,93,69,.14), transparent 45%),
-      var(--cream-2);
+      linear-gradient(rgba(30,20,15,0.65), rgba(30,20,15,0.65)),
+      url('cave.jpg') no-repeat center center;
+    background-size: cover;
     overflow:hidden;
+    color: var(--cream);
   }
+  .hero h1, .hero-lede, .hero .eyebrow { color: var(--cream); }
   .hero-inner{
-    display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;
-    padding:clamp(56px,9vw,104px) 0;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding: clamp(90px,14vw,150px) 20px;
   }
   .hero h1{margin-bottom:18px;}
   .hero h1 .accent{color:var(--honey);}
@@ -284,7 +286,6 @@
         <a href="#about" class="btn btn-ghost">Our story</a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">🐻</div>
   </div>
 </section>
 
